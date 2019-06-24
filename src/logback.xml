@@ -47,8 +47,6 @@
         <appender-ref ref="RollingFile"/>
     </root>
 
-    <logger name="com.erayt" level="info" />
-
     <!-- 下面配置一些第三方包的日志过滤级别，用于避免刷屏 -->
     <logger name="com.googlecode" level="WARN"/>
 	<logger name="com.ibatis" level="WARN"/>
