@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Reference Manual http://logback.qos.ch/manual/index.html -->
+
+<configuration scan="true">
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8"> <!-- encoder 可以指定字符集，对于中文输出有意义 -->
+            <pattern>%d{HH:mm:ss.SSS} [%-5level][%thread][%logger] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+
+        <!-- 可让每天产生一个日志文件，最多 10 个，自动回滚 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/buildSQL-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+
+        <!-- 下面这段注释的代码可以在日志文件超过 10MB 时进行归档，并且归档文件后缀只要是 .zip 或 .gz 就会自动压缩日志归档 -->
+        <!-- file>./PPS_logs/PPS.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+          <fileNamePattern>./PPS_logs/PPS.%i.log.zip</fileNamePattern>
+          <minIndex>1</minIndex>
+          <maxIndex>13</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy -->
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] [%level] %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 输出到控制台和文件，可定义更多的 Appender -->
+
+    <root level="info">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="RollingFile"/>
+    </root>
+
+    <logger name="com.erayt" level="info" />
+
+    <!-- 下面配置一些第三方包的日志过滤级别，用于避免刷屏 -->
+    <logger name="com.googlecode" level="WARN"/>
+	<logger name="com.ibatis" level="WARN"/>
+    <logger name="com.opensymphony" level="WARN"/>
+    <logger name="com.opensymphony.xwork2" level="WARN"/>
+	<logger name="net.sf" level="WARN"/>
+	<logger name="org.apache" level="WARN"/>
+	<logger name="org.apache.struts2" level="WARN"/>
+	<logger name="org.codehaus" level="WARN"/>
+	<logger name="org.jgroups" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+
+	<!-- show parameters for iBatis sql 专为 iBatis 定制 -->
+	<logger name="java.sql.Connection" level="WARN"/>
+    <logger name="java.sql.PreparedStatement" level="WARN"/>
+    <logger name="java.sql.ResultSet" level="WARN"/>
+
+</configuration>
