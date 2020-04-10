@@ -130,7 +130,7 @@ public class BuildSQL {
    * @param dataTypeIndex 数据类型值下标
    * @param dataLengthIndex 数据长度值所在下标
    * @param dataScaIndex 小数长度值所在下标
-   * @param nullAbleIndex 是否为空值所在下标
+   * @param nullAbleIndex 是否可为空值所在下标
    * @param isPKIndex 是否主键值所在下标
    */
   public static List<SQLBean> bulidBeanList(String path, int readSheetIndex, int startLine,int endLine, int tableNameIndex, int columeNameIndex,
