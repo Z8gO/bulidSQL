@@ -63,7 +63,7 @@ public class BuildSQL {
 
   /**
    * 描述:	 组装SQL脚本
-   * @param 表名    列名    列中文名    字段类型    字段长度    小数位长度(无可不填)   是否可为空   是否主键
+   * @param 表名    列名    列中文名     字段类型    字段长度    小数位长度(无可不填)   是否可为空   是否主键
    */
   public static void mkSQLScript(List<SQLBean> list) {
     if (0 == list.size() || null == list) {
